@@ -20,14 +20,15 @@ import WorkerImg from "../../../../../assets/imgs/worker.webp";
 import ArrowUp from "../../../../../assets/imgs/arrow-up.svg";
 import ArrowDown from "../../../../../assets/imgs/arrow-down.svg";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
 
-export const SolarFragment = () => {
+export const SolarFragment = ({stringsObj}) => {
 	const [activeIndex, setActiveIndex] = useState(null);
-	const stringsObj = useSelector((state) => state.stringsObj);
-	console.log(stringsObj);
-	console.log(stringsObj.more_details_header_title);
+	// const stringsObj = useSelector((state) => {
+	// 	console.log(state)
+	// 	return state.stringsObj
+	// });
+	// console.log(stringsObj);
 	
 	return (
 		<Container>

@@ -1,6 +1,6 @@
 import { Header } from "./header/header";
 import envStrings from "../../../assets/strings/env";
-import SolarPanelImg from "../../../assets/imgs/solar-panel.webp";
+// import SolarPanelImg from "../../../assets/imgs/solar-panel.webp";
 import ArrowRightImg from "../../../assets/imgs/arrow-right-white.svg";
 import {
 	Body,
@@ -50,7 +50,7 @@ const options = {
 	types: ["address"],
 };
 
-export const Dashboard = ({stringsObj}) => {
+const Dashboard = ({stringsObj}) => {
 	const [email, setEmail] = useState("");
 	const [address, setAddress] = useState("");
 	const [addr, setAddr] = useState({});
@@ -125,7 +125,7 @@ export const Dashboard = ({stringsObj}) => {
 								caption={stringsObj.hero_heading_2}
 							/>
 							<MobileImageContainer>
-								<img src={SolarPanelImg} alt="solar-panel" />
+								<img src={"/images/solar-panel.webp"} loading="lazy" alt="solar-panel" />
 							</MobileImageContainer>
 							<Description
 								caption={stringsObj.hero_body}
@@ -228,13 +228,13 @@ export const Dashboard = ({stringsObj}) => {
 							/>
 						</Content>
 						<ImageContainer>
-							<img src={SolarPanelImg} alt="solar-panel" />
+							<img src={"/images/solar-panel.webp"} loading="lazy" alt="solar-panel" />
 						</ImageContainer>
 					</ContentWrapper>
 				</Wrapper>
 			</Container>
 			<PlaceFragment stringsObj={stringsObj} />
-			<SolarFragment />
+			<SolarFragment stringsObj={stringsObj}/>
 			<ControlFragment stringsObj={stringsObj} />
 			<NetworkFragment stringsObj={stringsObj} />
 			<Footer />
@@ -242,3 +242,4 @@ export const Dashboard = ({stringsObj}) => {
 	);
 };
 
+export default Dashboard
