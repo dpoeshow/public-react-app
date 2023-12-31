@@ -165,7 +165,7 @@ const Setup3 = ({ stringsObj }) => {
 			});
  */
 
-  if (isClient) {
+  if (!isClient) {
     return null;
   }
   return (

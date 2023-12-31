@@ -8,7 +8,7 @@ const userContext = React.createContext(null);
 export const UserContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(
     persist(reducer, "state"),
-    initialState,
+    { ...initialState, loading: false },
     () => {
       if (!isBrowser()) {
         return;
@@ -17,7 +17,7 @@ export const UserContextProvider = ({ children }) => {
       if (!state) {
         return initialState;
       }
-      return JSON.parse(state);
+      return { ...JSON.parse(state), loading: false };
     }
   );
 
