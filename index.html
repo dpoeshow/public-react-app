@@ -12,11 +12,11 @@
   <!-- <link rel="preload" fetchpriority="high" as="image" href="/images/solar-panel_wwkqce_c_scale,w_484.webp" type="image/webp">
   <link rel="preload" fetchpriority="high" as="image" href="/images/solar-panel_wwkqce_c_scale,w_1215.webp" type="image/webp"> -->
 
-  <link rel="preload" href="/fonts/ProximaNova-Bold.woff" as="font" type="font/woff2" crossorigin />
+  <!-- <link rel="preload" href="/fonts/ProximaNova-Bold.woff" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/ProximaNova-Semibold.woff" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/ProximaNova-Regular.woff" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/ProximaNova-Light.woff" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/ProximaNova-Thin.woff" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/ProximaNova-Thin.woff" as="font" type="font/woff2" crossorigin /> -->
 
   <link rel="preload" href="/fonts/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
@@ -54,8 +54,28 @@
     /* app-script */
   </script>
 
-  <script defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLs8yb_ANP72I7nKNkiYd51P6zh_R5_4Q&libraries=places"></script>
+  <script>
+
+    window.addEventListener("load", () => {
+
+      const url = window.location
+      if (url.pathname !== "/") {
+        return
+      }
+
+      const scriptTag = document.createElement("script")
+      scriptTag.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDLs8yb_ANP72I7nKNkiYd51P6zh_R5_4Q&libraries=places"
+      scriptTag.type = "text/javascript"
+      scriptTag.id = "google-maps"
+      const added = document.body.appendChild(scriptTag)
+      // A Hack to lazyload the script and execute the code.
+      added.addEventListener("load", () => {
+        console.log("loaded..")
+
+        window.handleAutoComplete()
+      })
+    })
+  </script>
 </body>
 
 </html>

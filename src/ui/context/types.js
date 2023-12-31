@@ -1,0 +1,13 @@
+export const SET_LOADING = "SET_LOADING";
+export const SET_EMAIL = "SET_EMAIL";
+export const SET_ADDRESS = "SET_ADDRESS";
+export const SET_STEP = "SET_STEP";
+export const SET_MODE = "SET_MODE";
+export const SET_MONTH_COST = "SET_MONTH_COST";
+export const SET_SIZE = "SET_SIZE";
+export const SET_RECOMMEND_SIZE = "SET_RECOMMEND_SIZE";
+export const SET_INSTALL_COST = "SET_INSTALL_COST";
+export const SET_MODEL = "SET_MODEL";
+export const SET_MODEL_ID = "SET_MODEL_ID";
+export const SET_OPEN_MENU = "SET_OPEN_MENU";
+export const SET_STRINGS_OBJ = "SET_STRINGS_OBJ";

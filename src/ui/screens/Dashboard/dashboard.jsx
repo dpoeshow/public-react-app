@@ -32,6 +32,7 @@ import { NetworkFragment } from "./fragments/network/network";
 import { createModel, updateModel } from "../../api/server";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { useGa } from "../../hooks/useGa";
+import { useDispatch } from "../../context/context";
 
 // import ReactGA from "react-ga4";
 
@@ -53,7 +54,6 @@ const Dashboard = ({ stringsObj }) => {
   const [addr, setAddr] = useState({});
   const [errMail, setErrMail] = useState(false);
   const [errAddress, setErrAddress] = useState("");
-  const dispatch = () => {};
   const navigate = useNavigate();
 
   const { ga: ReactGA } = useGa();
@@ -96,6 +96,8 @@ const Dashboard = ({ stringsObj }) => {
       }
     },
   });
+
+  const dispatch = useDispatch();
 
   const goModel = () => {
     if (!address || !addr) {
@@ -164,6 +166,8 @@ const Dashboard = ({ stringsObj }) => {
                   loading="eager"
                   alt="solar-panel"
                   fetchpriority="high"
+                  // width={250}
+                  // height={"100%"}
                 />
               </MobileImageContainer>
               <Description

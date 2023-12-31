@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import React, { lazy } from "react";
+import React, { Suspense, lazy } from "react";
 import { Root } from "./ui/root/root";
 import { useEffect, useState } from "react";
 import { MobileMenu } from "./ui/screens/Dashboard/header/header.style";
@@ -9,13 +9,16 @@ import { SET_OPEN_MENU } from "./ui/redux/types";
 import { getStringsForAdId } from "./ui/api/server";
 import Dashboard from "./ui/screens/Dashboard/dashboard";
 import Page404 from "./ui/screens/404/404";
-import Setup1 from "./ui/screens/setup-1/setup1";
+// import Setup1 from "./ui/screens/setup-1/setup1";
 import Setup2 from "./ui/screens/setup-2/setup2";
 import Setup3 from "./ui/screens/setup-3/setup3";
 import Setup4 from "./ui/screens/setup-4/setup4";
 
 import defaultCopyStrings from "./assets/strings/defaults";
 import "./App.css?inline";
+import { MoonLoader } from "react-spinners";
+
+const Setup1 = lazy(() => import("./ui/screens/setup-1/setup1"));
 
 function useQuery() {
   const { search } = useLocation();
@@ -51,11 +54,15 @@ function App() {
           element={<Dashboard stringsObj={stringObjState} />}
           lazy={true}
         />
-        <Route path="/setup" element={<Root />} lazy={true}>
+        <Route path="/setup" element={<Root />}>
           <Route index element={<Navigate to={"/setup/step-1"} replace />} />
           <Route
             path="step-1"
-            element={<Setup1 stringsObj={stringObjState} />}
+            element={
+              <Suspense fallback={<MoonLoader />}>
+                <Setup1 stringsObj={stringObjState} />
+              </Suspense>
+            }
             lazy={true}
           />
           <Route

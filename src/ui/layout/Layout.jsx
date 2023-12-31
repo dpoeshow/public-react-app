@@ -4,13 +4,13 @@ import { Footer } from "./footer/footer";
 import { Header } from "./header/header";
 
 export const Layout = () => {
-	return (
-		<BodyWrapper>
-			<Header />
-			<Body>
-				<Content />
-			</Body>
-			<Footer />
-		</BodyWrapper>
-	);
+  return (
+    <BodyWrapper>
+      <Header />
+      <Body>
+        <Content />
+      </Body>
+      <Footer />
+    </BodyWrapper>
+  );
 };

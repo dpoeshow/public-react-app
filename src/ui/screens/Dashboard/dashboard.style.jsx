@@ -8,9 +8,6 @@ import {
 } from "../../../assets/size";
 import { COLORS } from "../../../assets/color";
 import BackgroundImage from "../../../assets/imgs/background.webp";
-import ReactGoogleAutocomplete from "react-google-autocomplete";
-
-console.log(ReactGoogleAutocomplete, "compete???");
 
 export const Body = styled.div`
   display: flex;
@@ -183,7 +180,7 @@ export const InputContainer = styled.div`
   }
 `;
 
-export const PlaceInput = styled(ReactGoogleAutocomplete)`
+export const PlaceInput = styled.input`
   height: 56px;
   width: calc(100% - 40px);
   border-radius: 30px;

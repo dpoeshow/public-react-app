@@ -25,7 +25,7 @@ import { COLORS } from "../../../assets/color";
 import { Input } from "../../../components/input/input";
 import { lazy, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import {
   SET_MODE,
   SET_MONTH_COST,
@@ -40,6 +40,7 @@ import {
   updateBill,
 } from "../../api/server";
 import { useGa } from "../../hooks/useGa";
+import { useDispatch, useSelector } from "../../context/context";
 
 const MONTHS = [
   {
@@ -355,6 +356,10 @@ const Setup1 = ({ stringsObj }) => {
       action: "react_flow_bill_entry_loaded",
     });
   }, [ReactGA]);
+
+  if (import.meta.env.SSR) {
+    throw Error("Client side component");
+  }
 
   return (
     <SlideAnimation>

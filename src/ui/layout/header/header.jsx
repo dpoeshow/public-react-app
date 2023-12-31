@@ -12,8 +12,9 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { COLORS } from "../../../assets/color";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import * as TbIcons from "react-icons/tb";
-import * as LiaIcons from "react-icons/lia";
+import { TbUserPlus } from "react-icons/tb";
+import { LiaBlogSolid } from "react-icons/lia";
+import { isBrowser } from "../../../utils/isBrowser";
 // import { BiSupport } from "react-icons/bi";
 
 export const Header = () => {
@@ -21,6 +22,9 @@ export const Header = () => {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
+    if (!isBrowser()) {
+      return;
+    }
     if (
       location.pathname === "/setup" ||
       location.pathname === "/setup/step-1"
@@ -49,7 +53,7 @@ export const Header = () => {
             onClick={() => {
               window.open("https://blog.sunfoxsolar.net/developers", "_self");
             }}
-            leftIcon={<TbIcons.TbUserPlus size={22} color="#FFF" />}
+            leftIcon={<TbUserPlus size={22} color="#FFF" />}
           />
           <Button
             caption={"Blog"}
@@ -60,7 +64,7 @@ export const Header = () => {
             onClick={() => {
               window.open("https://blog.sunfoxsolar.net/blog", "_self");
             }}
-            leftIcon={<LiaIcons.LiaBlogSolid size={22} color="#FFF" />}
+            leftIcon={<LiaBlogSolid size={22} color="#FFF" />}
           />
           {/* <Button
 						caption={"Supporters"}
@@ -86,7 +90,7 @@ export const Header = () => {
           <img src={MenuImg} alt="menu-img" />
         </MenuIconContianer>
       </Wrapper>
-      <ProgressBar
+      {/* <ProgressBar
         completed={step * 25}
         width="100%"
         height="10px"
@@ -95,7 +99,7 @@ export const Header = () => {
         bgColor={COLORS.primary}
         baseBgColor={COLORS.gray2}
         isLabelVisible={false}
-      />
+      /> */}
     </Container>
   );
 };
