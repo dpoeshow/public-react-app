@@ -2,14 +2,13 @@ import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import App from "./App";
-import { Slide, ToastContainer } from "react-toastify";
 import { Provider } from "react-redux";
 import { store } from "./ui/redux/store";
 import { ServerStyleSheet } from "styled-components";
 import { UserContextProvider } from "./ui/context/context";
+import { Toaster } from "react-hot-toast";
 
 export function render(url) {
-  console.log(url, "url");
   const sheet = new ServerStyleSheet();
   const html = ReactDOMServer.renderToString(
     sheet.collectStyles(
@@ -18,14 +17,8 @@ export function render(url) {
           <Provider store={store}>
             <UserContextProvider>
               <App />
-              <ToastContainer
-                closeButton={true}
-                hideProgressBar={true}
-                position="top-right"
-                transition={Slide}
-                autoClose={3000}
-              />
             </UserContextProvider>
+            <Toaster position="top-right" />
           </Provider>
         </StaticRouter>
       </React.StrictMode>

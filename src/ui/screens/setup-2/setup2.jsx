@@ -1,4 +1,3 @@
-import envStrings from "../../../assets/strings/env";
 import { Button } from "../../../components/button/button";
 import { Description, Text, Title } from "../../../components/title/title";
 import PencilImg from "../../../assets/imgs/pencil.svg";
@@ -14,23 +13,15 @@ import {
 } from "./setup2.style";
 import { COLORS } from "../../../assets/color";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { lazy, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SET_INSTALL_COST, SET_SIZE, SET_STEP } from "../../redux/types";
 import { InputSuffix } from "../../../components/input/input-suffix";
-import { toast } from "react-toastify";
 import { updateModel, getinstallCostRecommender } from "../../api/server";
 import { SlideAnimation } from "../../../components/slide-animation";
-
-const ReactGA = lazy(() =>
-  import("react-ga4").then((module) => {
-    if (import.meta.env.SSR) {
-      return;
-    }
-    module.initialize(envStrings.google_analytics_id);
-    return module;
-  })
-);
+import { useGa } from "../../hooks/useGa";
+import { useDispatch, useSelector } from "../../context/context";
+import { useIsClient } from "../../hooks/useIsClient";
+import toast from "react-hot-toast";
 
 const Setup2 = ({ stringsObj }) => {
   const navigate = useNavigate();
@@ -45,6 +36,10 @@ const Setup2 = ({ stringsObj }) => {
   const [error, setError] = useState(false);
   const step = useSelector((state) => state.step);
 
+  const { ga: ReactGA } = useGa();
+
+  const { isClient } = useIsClient();
+
   useEffect(() => {
     if (!(step >= 2 && location.pathname === "/setup/step-2")) {
       navigate("/");
@@ -58,11 +53,14 @@ const Setup2 = ({ stringsObj }) => {
   }, [recommendSize]);
 
   useEffect(() => {
+    if (!ReactGA) {
+      return;
+    }
     ReactGA.event({
       category: "react_flow_install_size_loaded",
       action: "react_flow_install_size_loaded",
     });
-  }, []);
+  }, [ReactGA]);
 
   const goBack = () => {
     dispatch({
@@ -118,6 +116,10 @@ const Setup2 = ({ stringsObj }) => {
         toast(err, { type: "error" });
       });
   };
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <SlideAnimation>

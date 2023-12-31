@@ -1,4 +1,3 @@
-import envStrings from "../../../assets/strings/env";
 import { Button } from "../../../components/button/button";
 import { Description, Text, Title } from "../../../components/title/title";
 import { Container } from "../../layout/header/header.style";
@@ -23,7 +22,7 @@ import {
 } from "./setup1.style";
 import { COLORS } from "../../../assets/color";
 import { Input } from "../../../components/input/input";
-import { lazy, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 // import { useDispatch, useSelector } from "react-redux";
 import {
@@ -40,7 +39,9 @@ import {
   updateBill,
 } from "../../api/server";
 import { useGa } from "../../hooks/useGa";
+import { useIsClient } from "../../hooks/useIsClient";
 import { useDispatch, useSelector } from "../../context/context";
+import { isBrowser } from "../../../utils/isBrowser";
 
 const MONTHS = [
   {
@@ -187,7 +188,12 @@ const Setup1 = ({ stringsObj }) => {
   // COST VARIABLE FOR MODE 3 (MONTHLY)
   const [monthCosts2, setMonthCosts2] = useState(0);
 
+  const { isClient } = useIsClient();
+
   useEffect(() => {
+    if (!isBrowser()) {
+      return;
+    }
     if (
       !step >= 1 &&
       (location.pathname === "/setup/step-1" || location.pathname === "/setup")
@@ -357,8 +363,8 @@ const Setup1 = ({ stringsObj }) => {
     });
   }, [ReactGA]);
 
-  if (import.meta.env.SSR) {
-    throw Error("Client side component");
+  if (!isClient) {
+    return null;
   }
 
   return (

@@ -1,4 +1,3 @@
-import envStrings from "../../../assets/strings/env";
 import { BUBBLE_NAV_URL_BASE } from "../../api/constant";
 import { Button } from "../../../components/button/button";
 import { Description, Text, Title } from "../../../components/title/title";
@@ -15,23 +14,15 @@ import {
 } from "./setup3.style";
 import { COLORS } from "../../../assets/color";
 import { useLocation, useNavigate } from "react-router-dom";
-import { lazy, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { SET_STEP } from "../../redux/types";
 import { updateModel } from "../../api/server";
 import { toast } from "react-toastify";
 import { InputPrefix } from "../../../components/input/input-suffix";
 import { SlideAnimation } from "../../../components/slide-animation";
-
-const ReactGA = lazy(() =>
-  import("react-ga4").then((module) => {
-    if (import.meta.env.SSR) {
-      return;
-    }
-    module.initialize(envStrings.google_analytics_id);
-    return module;
-  })
-);
+import { useDispatch, useSelector } from "../../context/context";
+import { useGa } from "../../hooks/useGa";
+import { useIsClient } from "../../hooks/useIsClient";
 
 const Setup3 = ({ stringsObj }) => {
   const dispatch = useDispatch();
@@ -48,6 +39,9 @@ const Setup3 = ({ stringsObj }) => {
   const [cost, setCost] = useState(0);
   const [error, setError] = useState(false);
 
+  const { ga: ReactGA } = useGa();
+  const { isClient } = useIsClient();
+
   useEffect(() => {
     if (!(step >= 3 && location.pathname === "/setup/step-3")) {
       navigate("/");
@@ -61,11 +55,14 @@ const Setup3 = ({ stringsObj }) => {
   }, [installCost]);
 
   useEffect(() => {
+    if (!ReactGA) {
+      return;
+    }
     ReactGA.event({
       category: "react_flow_calculate_savings_loaded",
       action: "react_flow_calculate_savings_loaded",
     });
-  }, []);
+  }, [ReactGA]);
   const goBack = () => {
     dispatch({
       type: SET_STEP,
@@ -167,6 +164,10 @@ const Setup3 = ({ stringsObj }) => {
 				toast(err, { type: "error" });
 			});
  */
+
+  if (isClient) {
+    return null;
+  }
   return (
     <SlideAnimation>
       <ContentContainer style={{ background: "transparent" }}>
