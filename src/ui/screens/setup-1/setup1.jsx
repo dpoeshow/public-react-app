@@ -106,6 +106,8 @@ const Setup1 = ({ stringsObj }) => {
   const model_id = useSelector((state) => state.model_id);
   const [isError, setIsError] = useState(false);
 
+  const [animationCompleted, setAnimationCompleted] = useState(false);
+
   const { ga: ReactGA } = useGa();
 
   // COST VARIABLE FORM MODE 1 (PAST 12 MONTHS)
@@ -367,7 +369,11 @@ const Setup1 = ({ stringsObj }) => {
   }
 
   return (
-    <SlideAnimation>
+    <SlideAnimation
+      onAnimationComplete={() => {
+        setAnimationCompleted(true);
+      }}
+    >
       <Container style={{ background: "transparent" }}>
         <Side>
           <LeftSide>
@@ -398,7 +404,11 @@ const Setup1 = ({ stringsObj }) => {
           </LeftSide>
           <RightSide>
             <StepContainer>
-              <Stepper className={mode === 0 ? "active" : "inactive"}>
+              <Stepper
+                className={
+                  animationCompleted && mode === 0 ? "active" : "inactive"
+                }
+              >
                 <StepRadio
                   onClick={() => {
                     dispatch({
@@ -407,15 +417,21 @@ const Setup1 = ({ stringsObj }) => {
                     });
                   }}
                 >
-                  <StepRadioActive
-                    style={{
-                      display: mode === 0 ? "flex" : "none",
-                    }}
-                  />
+                  {animationCompleted && (
+                    <StepRadioActive
+                      style={{
+                        display: mode === 0 ? "flex" : "none",
+                      }}
+                    />
+                  )}
                 </StepRadio>
                 <StepLabel>{stringsObj.power_bill_monthly}</StepLabel>
               </Stepper>
-              <Stepper className={mode === 1 ? "active" : "inactive"}>
+              <Stepper
+                className={
+                  animationCompleted && mode === 1 ? "active" : "inactive"
+                }
+              >
                 <StepRadio
                   onClick={() => {
                     dispatch({
@@ -424,15 +440,21 @@ const Setup1 = ({ stringsObj }) => {
                     });
                   }}
                 >
-                  <StepRadioActive
-                    style={{
-                      display: mode === 1 ? "flex" : "none",
-                    }}
-                  />
+                  {animationCompleted && (
+                    <StepRadioActive
+                      style={{
+                        display: mode === 1 ? "flex" : "none",
+                      }}
+                    />
+                  )}
                 </StepRadio>
                 <StepLabel>{stringsObj.power_bill_seasonal}</StepLabel>
               </Stepper>
-              <Stepper className={mode === 2 ? "active" : "inactive"}>
+              <Stepper
+                className={
+                  animationCompleted && mode === 2 ? "active" : "inactive"
+                }
+              >
                 <StepRadio
                   onClick={() => {
                     dispatch({
@@ -441,11 +463,13 @@ const Setup1 = ({ stringsObj }) => {
                     });
                   }}
                 >
-                  <StepRadioActive
-                    style={{
-                      display: mode === 2 ? "flex" : "none",
-                    }}
-                  />
+                  {animationCompleted && (
+                    <StepRadioActive
+                      style={{
+                        display: mode === 2 ? "flex" : "none",
+                      }}
+                    />
+                  )}
                 </StepRadio>
                 <StepLabel>{stringsObj.power_bill_single}</StepLabel>
               </Stepper>

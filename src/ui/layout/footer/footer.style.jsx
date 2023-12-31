@@ -4,11 +4,11 @@ import { MOBILE } from "../../../assets/size";
 
 export const FooterContainer = styled(Container)`
 	height: 100px;
-	margin-top: 80px;
+	margin-top: 40px;
 
 	@media (max-width: ${MOBILE}) {
 		//  height: 180px;
-		padding: 40px 0px;
+		padding: 20px 0px;
 	}
 `;
 
