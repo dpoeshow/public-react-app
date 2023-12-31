@@ -1,6 +1,5 @@
 import fs from "node:fs/promises";
 import express from "express";
-import { createOptimizer } from "img-optimizer/server";
 
 // Constants
 const isProduction = process.env.NODE_ENV === "production";
@@ -17,19 +16,6 @@ const ssrManifest = isProduction
 
 // Create http server
 const app = express();
-
-const optimize = createOptimizer({ cacheSizeMb: 100 });
-
-const cacheAbleExtensions = [
-  "woff",
-  "woff2",
-  "png",
-  "jpg",
-  "webp",
-  "svg",
-  "ico",
-  "json",
-];
 
 // Add Vite or respective production middlewares
 let vite;
@@ -49,8 +35,15 @@ if (!isProduction) {
     base,
     sirv("./dist/client", {
       extensions: [],
+      // We're compressing to brotli
       brotli: true,
       setHeaders: (res, path, stats) => {
+        // Never cache html, it helps load latest data (if updated)
+        if (path.includes("html")) {
+          return res;
+        }
+
+        // Cache other type of data for a day
         res.setHeader("Cache-Control", "public, max-age=86400");
         return res;
       },
@@ -74,11 +67,15 @@ app.use("*", async (req, res) => {
       render = (await import("./dist/server/entry-server.js")).render;
     }
 
+    // Here we need req.originalUrl as `location` param in `StaticRouter` param is expecting path with a forward-slash(/)
     const rendered = await render(req.originalUrl, ssrManifest);
 
     const html = template
       .replace(`<!--app-head-->`, rendered.head ?? "")
       .replace(`<!--app-html-->`, rendered.html ?? "")
+
+      // Created for our own purpose
+      // We inject custom styles/script values from server to reduce latency
       .replace(`/* app-script */`, rendered.script ?? "")
       .replace("<!--app-style-->", rendered.styles ?? "");
 

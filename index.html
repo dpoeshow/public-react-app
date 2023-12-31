@@ -113,8 +113,8 @@
 
   <script>
 
+    // Only load the maps script when dom is loaded and it's on main page
     window.addEventListener("load", () => {
-
       const url = window.location
       if (url.pathname !== "/") {
         return
@@ -129,6 +129,7 @@
       added.addEventListener("load", () => {
         console.info("Map script loaded")
 
+        // handleAutoComplete function is exported from `react-google-autocomplete` which is patch to handle async loading of script
         window.handleAutoComplete()
       })
     })

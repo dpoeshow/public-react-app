@@ -11,6 +11,7 @@ export function render(url) {
   const html = ReactDOMServer.renderToString(
     sheet.collectStyles(
       <React.StrictMode>
+        {/* StaticRouter is required for server-side */}
         <StaticRouter location={url}>
           <UserContextProvider>
             <App />
@@ -23,9 +24,5 @@ export function render(url) {
 
   const styleTags = sheet.getStyleTags();
 
-  const script = `
-  window.__SSR_ROUTE__ = ${JSON.stringify(url)}
-  `;
-
-  return { html, script, styles: styleTags };
+  return { html, styles: styleTags };
 }

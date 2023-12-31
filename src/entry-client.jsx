@@ -12,6 +12,7 @@ ReactDOM.hydrateRoot(
   document.getElementById("app"),
   <React.StrictMode>
     <BrowserRouter>
+      {/* framer-motion lazy-load */}
       <LazyMotion features={loadFeatures}>
         <UserContextProvider>
           <App />
