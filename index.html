@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Sunfox Solar System" />
+  <link rel="apple-touch-icon" href="/logo.png" />
+  <link rel="preload" fetchpriority="high" as="image" href="/images/solar-panel.webp" type="image/webp">
+  <!-- <link rel="preload" fetchpriority="high" as="image" href="/images/solar-panel_wwkqce_c_scale,w_484.webp" type="image/webp">
+  <link rel="preload" fetchpriority="high" as="image" href="/images/solar-panel_wwkqce_c_scale,w_1215.webp" type="image/webp"> -->
+
+  <link rel="preload" href="/fonts/ProximaNova-Bold.woff" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/ProximaNova-Semibold.woff" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/ProximaNova-Regular.woff" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/ProximaNova-Light.woff" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/ProximaNova-Thin.woff" as="font" type="font/woff2" crossorigin />
+
+  <link rel="preload" href="/fonts/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="/fonts/fonts.css">
+  </noscript>
+
+  <link rel="preload" href="/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="/index.css">
+  </noscript>
+
+  <!--app-style-->
+
+  <link rel="preconnect" href="https://maps.gstatic.com">
+  <link rel="preconnect" href="https://maps.googleapis.com">
+  <link rel="manifest" href="/manifest.json" />
+  <title>Sunfox Solar Cost and Savings Calculator</title>
+  <!--app-head-->
+</head>
+
+<body>
+  <div id="app"><!--app-html--></div>
+  <script type="module" src="/src/entry-client.jsx"></script>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <script>
+    /* app-script */
+  </script>
+
+  <script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLs8yb_ANP72I7nKNkiYd51P6zh_R5_4Q&libraries=places"></script>
+</body>
+
+</html>

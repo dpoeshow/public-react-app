@@ -1,15 +1,21 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import React, { Suspense, lazy } from "react";
+import React, { lazy } from "react";
 import { Root } from "./ui/root/root";
 import { useEffect, useState } from "react";
 import { MobileMenu } from "./ui/screens/Dashboard/header/header.style";
-import { AiOutlineClose } from "react-icons/ai/index.esm";
+import * as AiICons from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_OPEN_MENU } from "./ui/redux/types";
 import { getStringsForAdId } from "./ui/api/server";
+import Dashboard from "./ui/screens/Dashboard/dashboard";
+import Page404 from "./ui/screens/404/404";
+import Setup1 from "./ui/screens/setup-1/setup1";
+import Setup2 from "./ui/screens/setup-2/setup2";
+import Setup3 from "./ui/screens/setup-3/setup3";
+import Setup4 from "./ui/screens/setup-4/setup4";
 
 import defaultCopyStrings from "./assets/strings/defaults";
-import "./App.css";
+import "./App.css?inline";
 
 function useQuery() {
   const { search } = useLocation();
@@ -17,12 +23,6 @@ function useQuery() {
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 
-const Dashboard = lazy(() => import("./ui/screens/Dashboard/dashboard"));
-const Setup1 = lazy(() => import("./ui/screens/setup-1/setup1"));
-const Setup2 = lazy(() => import("./ui/screens/setup-2/setup2"));
-const Setup3 = lazy(() => import("./ui/screens/setup-3/setup3"));
-const Setup4 = lazy(() => import("./ui/screens/setup-4/setup4"));
-const Page404 = lazy(() => import("./ui/screens/404/404"));
 function App() {
   const dispatch = useDispatch();
 
@@ -45,31 +45,37 @@ function App() {
 
   return (
     <>
-      <Suspense>
-        <Routes>
-          <Route path="/" element={<Dashboard stringsObj={stringObjState} />} />
-          <Route path="/setup" element={<Root />}>
-            <Route index element={<Navigate to={"/setup/step-1"} replace />} />
-            <Route
-              path="step-1"
-              element={<Setup1 stringsObj={stringObjState} />}
-            />
-            <Route
-              path="step-2"
-              element={<Setup2 stringsObj={stringObjState} />}
-            />
-            <Route
-              path="step-3"
-              element={<Setup3 stringsObj={stringObjState} />}
-            />
-            <Route
-              path="step-4"
-              element={<Setup4 stringsObj={stringObjState} />}
-            />
-          </Route>
-          <Route path="*" element={<Page404 />} />
-        </Routes>
-      </Suspense>
+      <Routes>
+        <Route
+          path="/"
+          element={<Dashboard stringsObj={stringObjState} />}
+          lazy={true}
+        />
+        <Route path="/setup" element={<Root />} lazy={true}>
+          <Route index element={<Navigate to={"/setup/step-1"} replace />} />
+          <Route
+            path="step-1"
+            element={<Setup1 stringsObj={stringObjState} />}
+            lazy={true}
+          />
+          <Route
+            path="step-2"
+            element={<Setup2 stringsObj={stringObjState} />}
+            lazy={true}
+          />
+          <Route
+            path="step-3"
+            element={<Setup3 stringsObj={stringObjState} />}
+            lazy={true}
+          />
+          <Route
+            path="step-4"
+            element={<Setup4 stringsObj={stringObjState} />}
+            lazy={true}
+          />
+        </Route>
+        <Route path="*" element={<Page404 />} />
+      </Routes>
       <MobileMenu
         // initial={{ opacity: 0, scale: 0.5 }}
         // animate={{ opacity: 1, scale: 1 }}
@@ -124,7 +130,11 @@ function App() {
             });
           }}
         >
-          <AiOutlineClose size={40} color={"#FFF"} style={{ padding: 20 }} />
+          <AiICons.AiOutlineClose
+            size={40}
+            color={"#FFF"}
+            style={{ padding: 20 }}
+          />
         </div>
       </MobileMenu>
     </>

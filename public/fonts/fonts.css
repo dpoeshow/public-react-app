@@ -1,30 +1,30 @@
 @font-face {
     font-family: ProximaNovaBold;
-    src: url("../fonts/ProximaNova-Bold.woff");
+    src: url("/fonts/ProximaNova-Bold.woff");
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: ProximaNovaSemibold;
-    src: url("../fonts/ProximaNova-Semibold.woff");
+    src: url("/fonts/ProximaNova-Semibold.woff");
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: ProximaNovaRegular;
-    src: url("../fonts/ProximaNova-Regular.woff");
+    src: url("/fonts/ProximaNova-Regular.woff");
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: ProximaNovaLight;
-    src: url("../fonts/ProximaNova-Light.woff");
+    src: url("/fonts/ProximaNova-Light.woff");
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: ProximaNovaThin;
-    src: url("../fonts/ProximaNova-Thin.woff");
+    src: url("/fonts/ProximaNova-Thin.woff");
     font-style: normal;
     font-display: swap;
 }
