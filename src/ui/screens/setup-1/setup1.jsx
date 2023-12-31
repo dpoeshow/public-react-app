@@ -24,13 +24,12 @@ import { COLORS } from "../../../assets/color";
 import { Input } from "../../../components/input/input";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
 import {
   SET_MODE,
   SET_MONTH_COST,
   SET_RECOMMEND_SIZE,
   SET_STEP,
-} from "../../redux/types";
+} from "../../context/types";
 import { toast } from "react-toastify";
 import { SlideAnimation } from "../../../components/slide-animation";
 import {

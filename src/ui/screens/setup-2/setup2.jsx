@@ -14,7 +14,7 @@ import {
 import { COLORS } from "../../../assets/color";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { SET_INSTALL_COST, SET_SIZE, SET_STEP } from "../../redux/types";
+import { SET_INSTALL_COST, SET_SIZE, SET_STEP } from "../../context/types";
 import { InputSuffix } from "../../../components/input/input-suffix";
 import { updateModel, getinstallCostRecommender } from "../../api/server";
 import { SlideAnimation } from "../../../components/slide-animation";

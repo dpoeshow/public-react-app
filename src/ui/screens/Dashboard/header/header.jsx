@@ -7,8 +7,8 @@ import { COLORS } from "../../../../assets/color";
 import { TbUserPlus } from "react-icons/tb";
 import { LiaBlogSolid } from "react-icons/lia";
 import { BiSupport } from "react-icons/bi";
-import { useDispatch } from "react-redux";
-import { SET_OPEN_MENU } from "../../../redux/types";
+import { SET_OPEN_MENU } from "../../../context/types";
+import { useDispatch } from "../../../context/context";
 
 export const Header = () => {
   const dispatch = useDispatch();

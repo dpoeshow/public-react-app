@@ -4,8 +4,7 @@ import { Root } from "./ui/root/root";
 import { useEffect, useState } from "react";
 import { MobileMenu } from "./ui/screens/Dashboard/header/header.style";
 import * as AiICons from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
-import { SET_OPEN_MENU } from "./ui/redux/types";
+import { SET_OPEN_MENU } from "./ui/context/types";
 import { getStringsForAdId } from "./ui/api/server";
 import Dashboard from "./ui/screens/Dashboard/dashboard";
 import Page404 from "./ui/screens/404/404";
@@ -15,6 +14,7 @@ import Setup3 from "./ui/screens/setup-3/setup3";
 import Setup4 from "./ui/screens/setup-4/setup4";
 
 import defaultCopyStrings from "./assets/strings/defaults";
+import { useDispatch, useSelector } from "./ui/context/context";
 
 function useQuery() {
   const { search } = useLocation();

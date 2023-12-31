@@ -15,7 +15,7 @@ import {
 import { COLORS } from "../../../assets/color";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { SET_STEP } from "../../redux/types";
+import { SET_STEP } from "../../context/types";
 import { updateModel } from "../../api/server";
 import { toast } from "react-toastify";
 import { InputPrefix } from "../../../components/input/input-suffix";

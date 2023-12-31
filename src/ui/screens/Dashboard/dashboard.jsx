@@ -23,7 +23,7 @@ import {
   SET_EMAIL,
   SET_STEP,
   SET_MODEL_ID,
-} from "../../redux/types";
+} from "../../context/types";
 import { useNavigate } from "react-router-dom";
 import { PlaceFragment } from "./fragments/place/place";
 import { SolarFragment } from "./fragments/solar/solar";
