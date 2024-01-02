@@ -5,7 +5,7 @@ export const SlideAnimation = ({ children, onAnimationComplete }) => {
     <motion.div
       initial={{ x: "100%" }}
       animate={{ x: "0%" }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.75 }}
       style={{ overflowX: "hidden" }}
       onAnimationComplete={onAnimationComplete}
     >

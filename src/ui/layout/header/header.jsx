@@ -43,7 +43,10 @@ export const Header = () => {
   return (
     <Container>
       <Wrapper style={{ paddingTop: 34, paddingBottom: 24 }}>
-        <LogoWrapper href="/">
+        <LogoWrapper
+          href="/"
+          aria-label="Navigate to Home screen of SunfoxSolar.net"
+        >
           <LogoImg />
         </LogoWrapper>
         <ToolsWrapper>

@@ -15,7 +15,10 @@ export const Header = () => {
 
   return (
     <SpaceBetween style={{ width: "100%" }}>
-      <LogoWrapper href="/">
+      <LogoWrapper
+        href="/"
+        aria-label="Navigate to Home screen of SunfoxSolar.net"
+      >
         <LogoImg />
       </LogoWrapper>
       <ToolsWrapper>
