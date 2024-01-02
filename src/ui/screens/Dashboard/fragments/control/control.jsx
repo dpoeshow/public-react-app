@@ -7,10 +7,10 @@ import {
   SubmitContainer,
 } from "./control.style";
 import { Button } from "../../../../../components/button/button";
-import ArrowRightImg from "../../../../../assets/imgs/arrow-right-white.svg";
+import ArrowRightImg from "../../../../../assets/imgs/arrow-right-white.svg?react";
 import { Input } from "../../../../../components/input/input";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { validateEmail } from "../../../../../utils/validate";
 import { signupEmailList } from "../../../../api/server";
 import { useDispatch, useSelector } from "../../../../context/context";
@@ -58,7 +58,7 @@ export const ControlFragment = ({ stringsObj }) => {
                 behavior: "smooth",
               });
             }}
-            rightIcon={<img src={ArrowRightImg} alt="arrow" />}
+            rightIcon={<ArrowRightImg />}
             style={{
               fontSize: 20,
               justifyContent: "space-between",
@@ -87,7 +87,7 @@ export const ControlFragment = ({ stringsObj }) => {
               width={"calc(100% - 80px)"}
               onClick={goMailing}
               loading={loading}
-              rightIcon={<img src={ArrowRightImg} alt="arrow" />}
+              rightIcon={<ArrowRightImg />}
               style={{
                 fontSize: 20,
                 justifyContent: "space-between",

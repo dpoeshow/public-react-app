@@ -6,7 +6,7 @@ import {
   LeftContainer,
 } from "./network.style";
 import { Button } from "../../../../../components/button/button";
-import ArrowRightImg from "../../../../../assets/imgs/arrow-right-white.svg";
+import ArrowRightImg from "../../../../../assets/imgs/arrow-right-white.svg?react";
 
 export const NetworkFragment = ({ stringsObj }) => {
   return (
@@ -29,7 +29,7 @@ export const NetworkFragment = ({ stringsObj }) => {
                     "_self"
                   );
                 }}
-                rightIcon={<img src={ArrowRightImg} alt="arrow" />}
+                rightIcon={<ArrowRightImg />}
                 style={{
                   fontSize: 20,
                   justifyContent: "space-between",

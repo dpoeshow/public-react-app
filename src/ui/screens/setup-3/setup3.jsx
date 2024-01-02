@@ -13,18 +13,18 @@ import {
   StepContent,
 } from "./setup3.style";
 import { COLORS } from "../../../assets/color";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { SET_STEP } from "../../context/types";
 import { updateModel } from "../../api/server";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { InputPrefix } from "../../../components/input/input-suffix";
 import { SlideAnimation } from "../../../components/slide-animation";
 import { useDispatch, useSelector } from "../../context/context";
 import { useGa } from "../../hooks/useGa";
 import { useIsClient } from "../../hooks/useIsClient";
 
-const Setup3 = ({ stringsObj }) => {
+const Setup3 = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -41,6 +41,8 @@ const Setup3 = ({ stringsObj }) => {
 
   const { ga: ReactGA } = useGa();
   const { isClient } = useIsClient();
+
+  const stringsObj = useLoaderData();
 
   useEffect(() => {
     if (!(step >= 3 && location.pathname === "/setup/step-3")) {

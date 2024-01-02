@@ -1,6 +1,5 @@
 import { Header } from "./header/header";
-// import SolarPanelImg from "../../../assets/imgs/solar-panel.webp";
-import ArrowRightImg from "../../../assets/imgs/arrow-right-white.svg";
+import ArrowRightImg from "../../../assets/imgs/arrow-right-white.svg?react";
 import {
   Body,
   Container,
@@ -16,7 +15,7 @@ import { Button } from "../../../components/button/button";
 import { Input } from "../../../components/input/input";
 import { Footer } from "./footer/footer";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { validateEmail } from "../../../utils/validate";
 import {
   SET_ADDRESS,
@@ -24,7 +23,7 @@ import {
   SET_STEP,
   SET_MODEL_ID,
 } from "../../context/types";
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { PlaceFragment } from "./fragments/place/place";
 import { SolarFragment } from "./fragments/solar/solar";
 import { ControlFragment } from "./fragments/control/control";
@@ -33,8 +32,6 @@ import { createModel, updateModel } from "../../api/server";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { useGa } from "../../hooks/useGa";
 import { useDispatch } from "../../context/context";
-
-// import ReactGA from "react-ga4";
 
 const options = {
   componentRestrictions: { country: "us" },
@@ -48,13 +45,15 @@ const options = {
   types: ["address"],
 };
 
-const Dashboard = ({ stringsObj }) => {
+const Dashboard = () => {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [addr, setAddr] = useState({});
   const [errMail, setErrMail] = useState(false);
   const [errAddress, setErrAddress] = useState("");
   const navigate = useNavigate();
+
+  const stringsObj = useLoaderData();
 
   const { ga: ReactGA } = useGa();
 
@@ -196,7 +195,7 @@ const Dashboard = ({ stringsObj }) => {
                 height={56}
                 width={"calc(100% - 80px)"}
                 onClick={goModel}
-                rightIcon={<img src={ArrowRightImg} alt="arrow" />}
+                rightIcon={<ArrowRightImg />}
                 style={{
                   fontSize: 20,
                   justifyContent: "space-between",

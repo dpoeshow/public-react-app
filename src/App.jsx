@@ -1,26 +1,9 @@
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import React from "react";
-import { Root } from "./ui/root/root";
-import { useEffect, useState } from "react";
 import { MobileMenu } from "./ui/screens/Dashboard/header/header.style";
 import * as AiICons from "react-icons/ai";
 import { SET_OPEN_MENU } from "./ui/context/types";
-import { getStringsForAdId } from "./ui/api/server";
-import Dashboard from "./ui/screens/Dashboard/dashboard";
-import Page404 from "./ui/screens/404/404";
-import Setup1 from "./ui/screens/setup-1/setup1";
-import Setup2 from "./ui/screens/setup-2/setup2";
-import Setup3 from "./ui/screens/setup-3/setup3";
-import Setup4 from "./ui/screens/setup-4/setup4";
 
-import defaultCopyStrings from "./assets/strings/defaults";
 import { useDispatch, useSelector } from "./ui/context/context";
-
-function useQuery() {
-  const { search } = useLocation();
-
-  return React.useMemo(() => new URLSearchParams(search), [search]);
-}
+import { AppRoutes } from "./route";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,52 +14,9 @@ function App() {
     closed: { opacity: 1, y: "-100%" },
   };
 
-  const [stringObjState, setStringObjState] = useState(defaultCopyStrings);
-  let query = useQuery();
-  useEffect(() => {
-    const ad_group_id = query.get("ad_group_id");
-    if (ad_group_id) {
-      getStringsForAdId(dispatch, ad_group_id).then((respStringsObj) => {
-        setStringObjState(respStringsObj);
-      });
-    }
-  }, [dispatch, query]);
-
   return (
     <>
-      <Routes>
-        <Route
-          path="/"
-          element={<Dashboard stringsObj={stringObjState} />}
-          lazy={true}
-        />
-        <Route path="/setup" element={<Root />}>
-          <Route index element={<Navigate to={"/setup/step-1"} replace />} />
-          <Route
-            path="step-1"
-            element={
-              <Setup1 stringsObj={stringObjState} suppressHydrationWarning />
-            }
-            lazy={true}
-          />
-          <Route
-            path="step-2"
-            element={<Setup2 stringsObj={stringObjState} />}
-            lazy={true}
-          />
-          <Route
-            path="step-3"
-            element={<Setup3 stringsObj={stringObjState} />}
-            lazy={true}
-          />
-          <Route
-            path="step-4"
-            element={<Setup4 stringsObj={stringObjState} />}
-            lazy={true}
-          />
-        </Route>
-        <Route path="*" element={<Page404 />} />
-      </Routes>
+      <AppRoutes />
       <MobileMenu
         // initial={{ opacity: 0, scale: 0.5 }}
         // animate={{ opacity: 1, scale: 1 }}

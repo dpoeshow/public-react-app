@@ -6,7 +6,7 @@ import {
   FooterWrapper,
   MobileFooterWrapper,
 } from "./footer.style";
-import PencilImg from "../../../assets/imgs/pencil.svg";
+import PencilImg from "../../../assets/imgs/pencil.svg?react";
 
 export const Footer = () => {
   return (
@@ -58,7 +58,7 @@ export const Footer = () => {
           caption={"Edit Details"}
           width={200}
           height={40}
-          leftIcon={<img src={PencilImg} alt="pencil" />}
+          leftIcon={<PencilImg />}
           style={{
             marginTop: 20,
             maxWidth: 160,

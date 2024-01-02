@@ -1,5 +1,5 @@
-import LogoImg from "../../../assets/imgs/LOGO.svg";
-import MenuImg from "../../../assets/imgs/menu.svg";
+import LogoImg from "../../../assets/imgs/LOGO.svg?react";
+import MenuImg from "../../../assets/imgs/menu.svg?react";
 import { Button } from "../../../components/button/button";
 import {
   Container,
@@ -8,6 +8,7 @@ import {
   ToolsWrapper,
   Wrapper,
 } from "./header.style";
+// TO-DO Required
 import ProgressBar from "@ramonak/react-progress-bar";
 import { COLORS } from "../../../assets/color";
 import { useLocation } from "react-router-dom";
@@ -43,7 +44,7 @@ export const Header = () => {
     <Container>
       <Wrapper style={{ paddingTop: 34, paddingBottom: 24 }}>
         <LogoWrapper href="/">
-          <img src={LogoImg} alt="logo-img" />
+          <LogoImg />
         </LogoWrapper>
         <ToolsWrapper>
           <Button
@@ -87,7 +88,7 @@ export const Header = () => {
 					/> */}
         </ToolsWrapper>
         <MenuIconContianer>
-          <img src={MenuImg} alt="menu-img" />
+          <MenuImg />
         </MenuIconContianer>
       </Wrapper>
       {/* <ProgressBar

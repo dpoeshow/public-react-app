@@ -12,7 +12,7 @@ import {
   StepContent,
 } from "./setup2.style";
 import { COLORS } from "../../../assets/color";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { SET_INSTALL_COST, SET_SIZE, SET_STEP } from "../../context/types";
 import { InputSuffix } from "../../../components/input/input-suffix";
@@ -21,9 +21,9 @@ import { SlideAnimation } from "../../../components/slide-animation";
 import { useGa } from "../../hooks/useGa";
 import { useDispatch, useSelector } from "../../context/context";
 import { useIsClient } from "../../hooks/useIsClient";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
-const Setup2 = ({ stringsObj }) => {
+const Setup2 = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -35,6 +35,8 @@ const Setup2 = ({ stringsObj }) => {
   const [size, setSize] = useState(0);
   const [error, setError] = useState(false);
   const step = useSelector((state) => state.step);
+
+  const stringsObj = useLoaderData();
 
   const { ga: ReactGA } = useGa();
 

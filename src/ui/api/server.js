@@ -190,7 +190,6 @@ export const getStringsForAdId = (dispatch, adId) =>
     sunfoxApiClient
       .get("/strings", { params: { ad_group_id: adId } })
       .then((res) => {
-        console.log(res);
         dispatch({
           type: SET_LOADING,
           payload: false,

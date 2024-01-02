@@ -23,14 +23,14 @@ import {
 import { COLORS } from "../../../assets/color";
 import { Input } from "../../../components/input/input";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import {
   SET_MODE,
   SET_MONTH_COST,
   SET_RECOMMEND_SIZE,
   SET_STEP,
 } from "../../context/types";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { SlideAnimation } from "../../../components/slide-animation";
 import {
   getinstallSizeRecommender,
@@ -93,7 +93,7 @@ const MONTHS = [
   },
 ];
 
-const Setup1 = ({ stringsObj }) => {
+const Setup1 = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -105,6 +105,8 @@ const Setup1 = ({ stringsObj }) => {
   const step = useSelector((state) => state.step);
   const model_id = useSelector((state) => state.model_id);
   const [isError, setIsError] = useState(false);
+
+  const stringsObj = useLoaderData();
 
   const [animationCompleted, setAnimationCompleted] = useState(false);
 

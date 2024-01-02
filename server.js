@@ -1,11 +1,15 @@
 import fs from "node:fs/promises";
 import express from "express";
+import { createStaticHandler } from "react-router-dom/server.js";
+// import { routeJson } from "./src/route.jsx";
+import { createFetchRequest } from "./request.js";
 
 // Constants
 const isProduction = process.env.NODE_ENV === "production";
 const port = process.env.PORT || 5173;
 const base = process.env.BASE || "/";
 
+let handler;
 // Cached production assets
 const templateHtml = isProduction
   ? await fs.readFile("./dist/client/index.html", "utf-8")
@@ -26,8 +30,12 @@ if (!isProduction) {
     appType: "custom",
     base,
   });
+  const { routeJson } = await vite.ssrLoadModule("./src/route.jsx");
+  handler = createStaticHandler(routeJson);
   app.use(vite.middlewares);
 } else {
+  const { routeJson } = await import("./dist/server/entry-server.js");
+  handler = createStaticHandler(routeJson);
   const compression = (await import("compression")).default;
   const sirv = (await import("sirv")).default;
   app.use(compression());
@@ -54,6 +62,9 @@ if (!isProduction) {
 // Serve HTML
 app.use("*", async (req, res) => {
   try {
+    let fetchRequest = createFetchRequest(req);
+    let context = await handler.query(fetchRequest);
+
     const url = req.originalUrl.replace(base, "");
     let template;
     let render;
@@ -68,7 +79,12 @@ app.use("*", async (req, res) => {
     }
 
     // Here we need req.originalUrl as `location` param in `StaticRouter` param is expecting path with a forward-slash(/)
-    const rendered = await render(req.originalUrl, ssrManifest);
+    const rendered = await render(
+      req.originalUrl,
+      ssrManifest,
+      handler.dataRoutes,
+      context
+    );
 
     const html = template
       .replace(`<!--app-head-->`, rendered.head ?? "")
@@ -88,6 +104,6 @@ app.use("*", async (req, res) => {
 });
 
 // Start http server
-app.listen(port, () => {
+app.listen(port, async () => {
   console.log(`Server started at http://localhost:${port}`);
 });

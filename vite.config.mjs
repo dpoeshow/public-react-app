@@ -9,7 +9,7 @@ export default defineConfig({
     react(),
     splitVendorChunkPlugin(),
     viteCompression({ algorithm: "brotliCompress" }),
-    svgr(),
+    svgr({ include: "**/*.svg?react" }),
   ],
   ssr: {
     noExternal: ["styled-components", "react-icons"],
@@ -17,6 +17,7 @@ export default defineConfig({
     optimizeDeps: ["react-icons"],
   },
   build: {
+    ssrEmitAssets: true,
     rollupOptions: {
       output: {
         sourcemap: false,

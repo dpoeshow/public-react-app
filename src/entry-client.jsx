@@ -1,24 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { BrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { LazyMotion } from "framer-motion";
 import { UserContextProvider } from "./ui/context/context.jsx";
-import { Toaster } from "react-hot-toast";
+import { routeJson } from "./route.jsx";
+import { Toaster } from "sonner";
+
+// import { Toaster } from "react-hot-toast";
 
 const loadFeatures = () => import("./features.js").then((res) => res.default);
+
+const browserRouter = createBrowserRouter(routeJson);
 
 ReactDOM.hydrateRoot(
   document.getElementById("app"),
   <React.StrictMode>
-    <BrowserRouter>
-      {/* framer-motion lazy-load */}
-      <LazyMotion features={loadFeatures}>
-        <UserContextProvider>
+    <UserContextProvider>
+      <RouterProvider router={browserRouter} fallbackElement={null}>
+        {/* framer-motion lazy-load */}
+        <LazyMotion features={loadFeatures}>
           <App />
-        </UserContextProvider>
-        <Toaster position="top-right" />
-      </LazyMotion>
-    </BrowserRouter>
+        </LazyMotion>
+      </RouterProvider>
+      <Toaster position="top-right" richColors />
+    </UserContextProvider>
   </React.StrictMode>
 );
