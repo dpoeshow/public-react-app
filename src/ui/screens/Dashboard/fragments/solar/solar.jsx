@@ -12,12 +12,12 @@ import {
   MobileImageContainer,
   RightContainer,
 } from "./solar.style";
-import RealQuotesImg from "../../../../../assets/imgs/quote-request.svg";
-import InfoImg from "../../../../../assets/imgs/info.svg";
-import CompareImg from "../../../../../assets/imgs/comparison.svg";
-import DollarImg from "../../../../../assets/imgs/dollar.svg";
-import ArrowUp from "../../../../../assets/imgs/arrow-up.svg";
-import ArrowDown from "../../../../../assets/imgs/arrow-down.svg";
+import RealQuotesImg from "../../../../../assets/imgs/quote-request.svg?react";
+import InfoImg from "../../../../../assets/imgs/info.svg?react";
+import CompareImg from "../../../../../assets/imgs/comparison.svg?react";
+import DollarImg from "../../../../../assets/imgs/dollar.svg?react";
+import ArrowUp from "../../../../../assets/imgs/arrow-up.svg?react";
+import ArrowDown from "../../../../../assets/imgs/arrow-down.svg?react";
 import { useState } from "react";
 
 export const SolarFragment = ({ stringsObj }) => {
@@ -51,7 +51,7 @@ export const SolarFragment = ({ stringsObj }) => {
                 >
                   <div>
                     <ImgContainer>
-                      <img src={RealQuotesImg} alt="Plan" />
+                      <RealQuotesImg />
                     </ImgContainer>
                     <label>{stringsObj.second_block_page_icon_title}</label>
                   </div>
@@ -82,7 +82,7 @@ export const SolarFragment = ({ stringsObj }) => {
                 >
                   <div>
                     <ImgContainer>
-                      <img src={InfoImg} alt="Plan" />
+                      <InfoImg />
                     </ImgContainer>
                     <label>{stringsObj.second_block_info_icon_title}</label>
                   </div>
@@ -113,7 +113,7 @@ export const SolarFragment = ({ stringsObj }) => {
                 >
                   <div>
                     <ImgContainer>
-                      <img src={CompareImg} alt="Plan" />
+                      <CompareImg />
                     </ImgContainer>
                     <label>{stringsObj.second_block_scales_icon_title}</label>
                   </div>
@@ -144,7 +144,7 @@ export const SolarFragment = ({ stringsObj }) => {
                 >
                   <div>
                     <ImgContainer>
-                      <img src={DollarImg} alt="Plan" />
+                      <DollarImg />
                     </ImgContainer>
                     <label>{stringsObj.second_block_money_icon_title}</label>
                   </div>

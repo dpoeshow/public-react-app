@@ -48,7 +48,7 @@ export const NetworkFragment = ({ stringsObj }) => {
                     "_self"
                   );
                 }}
-                rightIcon={<img src={ArrowRightImg} alt="arrow" />}
+                rightIcon={<ArrowRightImg />}
                 style={{
                   fontSize: 20,
                   justifyContent: "space-between",

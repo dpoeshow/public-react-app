@@ -1,8 +1,8 @@
 import { Button } from "../../../components/button/button";
 import { Description, Text, Title } from "../../../components/title/title";
 import { Container } from "../../layout/header/header.style";
-import PencilImg from "../../../assets/imgs/pencil.svg";
-import ArrowImg from "../../../assets/imgs/arrow-right-white.svg";
+import PencilImg from "../../../assets/imgs/pencil.svg?react";
+import ArrowImg from "../../../assets/imgs/arrow-right-white.svg?react";
 import {
   ButtonContainer,
   ContentOne,
@@ -399,7 +399,7 @@ const Setup1 = () => {
                 height={60}
                 width={200}
                 onClick={goBack}
-                leftIcon={<img src={PencilImg} alt="pencil" />}
+                leftIcon={<PencilImg />}
                 style={{ background: "#000000", marginTop: 20 }}
               />
             </InfoContainer>
@@ -542,7 +542,7 @@ const Setup1 = () => {
                 height={56}
                 width={"100%"}
                 onClick={goNext}
-                rightIcon={<img src={ArrowImg} alt="arrow" />}
+                rightIcon={<ArrowImg />}
                 style={{
                   fontSize: 20,
                   justifyContent: "space-between",
@@ -554,7 +554,7 @@ const Setup1 = () => {
                 caption={"or Go back"}
                 height={56}
                 width={"100%"}
-                rightIcon={<img src={ArrowImg} alt="arrow" />}
+                rightIcon={<ArrowImg />}
                 onClick={goBack}
                 style={{
                   fontSize: 20,

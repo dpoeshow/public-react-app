@@ -176,8 +176,8 @@ const Dashboard = () => {
                   loading="eager"
                   alt="solar-panel"
                   fetchpriority="high"
-                  // width={250}
-                  // height={"100%"}
+                  width={"100%"}
+                  height={250}
                 />
               </MobileImageContainer>
               <Description

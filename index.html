@@ -19,6 +19,7 @@
   <link rel="preload" href="/fonts/ProximaNova-Thin.woff" as="font" type="font/woff2" crossorigin /> -->
 
   <link rel="preload" href="/fonts/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
   <noscript>
     <link rel="stylesheet" href="/fonts/fonts.css">
   </noscript>
@@ -115,12 +116,15 @@
     const initEvent = document.createEvent("Event")
     initEvent.initEvent("loadMaps")
     window.initEvent = initEvent
+
+    let mapLoaded = false
     // Only load the maps script when dom is loaded and it's on main page
 
     const loadMap = () => {
-      if (window.google) {
+      if (window.google || mapLoaded) {
         return
       }
+      mapLoaded = true
       const scriptTag = document.createElement("script")
       scriptTag.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDLs8yb_ANP72I7nKNkiYd51P6zh_R5_4Q&libraries=places&callback=initMap"
       scriptTag.type = "text/javascript"
