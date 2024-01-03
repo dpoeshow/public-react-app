@@ -210,7 +210,7 @@ const Setup1 = () => {
       type: SET_STEP,
       payload: 0,
     });
-    navigate(-1);
+    navigate("/", { replace: false, preventScrollReset: true });
   };
 
   const passData = (data, cost) => {

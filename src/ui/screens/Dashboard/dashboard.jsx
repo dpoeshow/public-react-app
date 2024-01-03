@@ -14,7 +14,7 @@ import { Description, Text, Title } from "../../../components/title/title";
 import { Button } from "../../../components/button/button";
 import { Input } from "../../../components/input/input";
 import { Footer } from "./footer/footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { validateEmail } from "../../../utils/validate";
 import {
@@ -32,6 +32,7 @@ import { createModel, updateModel } from "../../api/server";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { useGa } from "../../hooks/useGa";
 import { useDispatch } from "../../context/context";
+import { useIsClient } from "../../hooks/useIsClient";
 
 const options = {
   componentRestrictions: { country: "us" },
@@ -56,6 +57,16 @@ const Dashboard = () => {
   const stringsObj = useLoaderData();
 
   const { ga: ReactGA } = useGa();
+
+  const isClient = useIsClient();
+
+  useEffect(() => {
+    if (!isClient) {
+      return;
+    }
+
+    document.dispatchEvent(window.initEvent);
+  }, [isClient]);
 
   const { ref } = usePlacesWidget({
     options: options,

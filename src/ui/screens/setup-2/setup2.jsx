@@ -69,7 +69,7 @@ const Setup2 = () => {
       type: SET_STEP,
       payload: 1,
     });
-    navigate(-1);
+    navigate("/setup/step-1");
   };
 
   const goDashboard = () => {

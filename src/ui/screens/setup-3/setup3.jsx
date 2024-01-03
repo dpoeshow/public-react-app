@@ -70,7 +70,7 @@ const Setup3 = () => {
       type: SET_STEP,
       payload: 2,
     });
-    navigate(-1);
+    navigate("/setup/step-2");
   };
 
   const navToBubbleReport = () => {
