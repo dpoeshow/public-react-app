@@ -112,26 +112,53 @@
   </script>
 
   <script>
+    const initEvent = document.createEvent("Event")
+    initEvent.initEvent("loadMaps")
+    window.initEvent = initEvent
     // Only load the maps script when dom is loaded and it's on main page
+
+    const loadMap = () => {
+      if (window.google) {
+        return
+      }
+      const scriptTag = document.createElement("script")
+      scriptTag.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDLs8yb_ANP72I7nKNkiYd51P6zh_R5_4Q&libraries=places&callback=initMap"
+      scriptTag.type = "text/javascript"
+      scriptTag.id = "google-maps"
+      const added = document.head.appendChild(scriptTag)
+    }
+
+    // A callback to handle when the script load is completed this function will be called.
+    window.initMap = () => {
+      console.log("added map")
+      window.handleAutoComplete()
+    }
+
+    // Logic to add the map asynchronously
     window.addEventListener("load", () => {
+      // This loadMaps event is useful when we're navigating back from any page cause `load` event will only be firing when page is
+      // first loaded, not on navigation etc..
+      document.addEventListener("loadMaps", () => {
+        if (!window.google) {
+          loadMap()
+        }
+        // Once is required, cause `useEffect` might send events multiple times with in no-time difference so once will remove the listener
+        // once completed.
+      }, { once: true })
+
+      if (window.google) {
+        return
+      }
       const url = window.location
       if (url.pathname !== "/") {
         return
       }
 
-      const scriptTag = document.createElement("script")
-      scriptTag.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDLs8yb_ANP72I7nKNkiYd51P6zh_R5_4Q&libraries=places"
-      scriptTag.type = "text/javascript"
-      scriptTag.id = "google-maps"
-      const added = document.body.appendChild(scriptTag)
-      // A Hack to lazyload the script and execute the code.
-      added.addEventListener("load", () => {
-        console.info("Map script loaded")
+      // Load the map
+      loadMap()
 
-        // handleAutoComplete function is exported from `react-google-autocomplete` which is patch to handle async loading of script
-        window.handleAutoComplete()
-      })
-    })
+      // A Hack to lazyload the script and execute the code.
+    }, { once: true })
   </script>
 </body>
 
