@@ -55,12 +55,7 @@ export const SolarFragment = ({ stringsObj }) => {
                     </ImgContainer>
                     <label>{stringsObj.second_block_page_icon_title}</label>
                   </div>
-                  <div>
-                    <img
-                      src={activeIndex === 1 ? ArrowUp : ArrowDown}
-                      alt="arrow"
-                    />
-                  </div>
+                  <div>{activeIndex === 1 ? <ArrowUp /> : <ArrowDown />}</div>
                 </ListTitle>
                 <ListLabel
                   style={{
@@ -86,12 +81,7 @@ export const SolarFragment = ({ stringsObj }) => {
                     </ImgContainer>
                     <label>{stringsObj.second_block_info_icon_title}</label>
                   </div>
-                  <div>
-                    <img
-                      src={activeIndex === 2 ? ArrowUp : ArrowDown}
-                      alt="arrow"
-                    />
-                  </div>
+                  <div>{activeIndex === 2 ? <ArrowUp /> : <ArrowDown />}</div>
                 </ListTitle>
                 <ListLabel
                   style={{
@@ -118,10 +108,7 @@ export const SolarFragment = ({ stringsObj }) => {
                     <label>{stringsObj.second_block_scales_icon_title}</label>
                   </div>
                   <div>
-                    <img
-                      src={activeIndex === 3 ? ArrowUp : ArrowDown}
-                      alt="arrow"
-                    />
+                    <div>{activeIndex === 3 ? <ArrowUp /> : <ArrowDown />}</div>
                   </div>
                 </ListTitle>
                 <ListLabel
@@ -149,10 +136,7 @@ export const SolarFragment = ({ stringsObj }) => {
                     <label>{stringsObj.second_block_money_icon_title}</label>
                   </div>
                   <div>
-                    <img
-                      src={activeIndex === 4 ? ArrowUp : ArrowDown}
-                      alt="arrow"
-                    />
+                    <div>{activeIndex === 4 ? <ArrowUp /> : <ArrowDown />}</div>
                   </div>
                 </ListTitle>
                 <ListLabel
