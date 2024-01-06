@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Sunfox Solar System" />
+  <link rel="apple-touch-icon" href="/logo.png" />
+  <link rel="preload" fetchpriority="high" as="image" href="/images/solar-panel.webp" type="image/webp">
+  <!-- <link rel="preload" fetchpriority="high" as="image" href="/images/solar-panel_wwkqce_c_scale,w_484.webp" type="image/webp">
+  <link rel="preload" fetchpriority="high" as="image" href="/images/solar-panel_wwkqce_c_scale,w_1215.webp" type="image/webp"> -->
+
+  <!-- <link rel="preload" href="/fonts/ProximaNova-Bold.woff" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/ProximaNova-Semibold.woff" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/ProximaNova-Regular.woff" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/ProximaNova-Light.woff" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/ProximaNova-Thin.woff" as="font" type="font/woff2" crossorigin /> -->
+
+  <link rel="preload" href="/fonts/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+  <noscript>
+    <link rel="stylesheet" href="/fonts/fonts.css">
+  </noscript>
+
+  <link rel="preload" href="/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="/index.css">
+  </noscript>
+
+
+  <style id="base-styles">
+    .App {
+      text-align: center;
+    }
+
+    .App-logo {
+      height: 40vmin;
+      pointer-events: none;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+      }
+    }
+
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    .pac-item {
+      height: 40px !important;
+      padding-top: 10px !important;
+    }
+
+    .pac-item:hover {
+      background-color: #fc782e !important;
+    }
+
+    .pac-item>span {
+      font-family: "ProximaNovaRegular" !important;
+      font-size: 16px !important;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <!--app-style-->
+
+  <link rel="preconnect" href="https://maps.gstatic.com">
+  <link rel="preconnect" href="https://maps.googleapis.com">
+  <link rel="manifest" href="/manifest.json" />
+  <title>Sunfox Solar Cost and Savings Calculator</title>
+  <!--app-head-->
+</head>
+
+<body>
+  <div id="app"><!--app-html--></div>
+  <script type="module" src="/src/entry-client.jsx"></script>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <script>
+    /* app-script */
+  </script>
+
+  <script>
+    const initEvent = document.createEvent("Event")
+    initEvent.initEvent("loadMaps")
+    window.initEvent = initEvent
+
+    let mapLoaded = false
+    // Only load the maps script when dom is loaded and it's on main page
+
+    const loadMap = () => {
+      if (window.google || mapLoaded) {
+        return
+      }
+      mapLoaded = true
+      const scriptTag = document.createElement("script")
+      scriptTag.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDLs8yb_ANP72I7nKNkiYd51P6zh_R5_4Q&libraries=places&callback=initMap"
+      scriptTag.type = "text/javascript"
+      scriptTag.id = "google-maps"
+      const added = document.head.appendChild(scriptTag)
+    }
+
+    // A callback to handle when the script load is completed this function will be called.
+    window.initMap = () => {
+      console.log("added map")
+      window.handleAutoComplete()
+    }
+
+    // Logic to add the map asynchronously
+    window.addEventListener("load", () => {
+      // This loadMaps event is useful when we're navigating back from any page cause `load` event will only be firing when page is
+      // first loaded, not on navigation etc..
+      document.addEventListener("loadMaps", () => {
+        if (!window.google) {
+          loadMap()
+        }
+        // Once is required, cause `useEffect` might send events multiple times with in no-time difference so once will remove the listener
+        // once completed.
+      }, { once: true })
+
+      if (window.google) {
+        return
+      }
+      const url = window.location
+      if (url.pathname !== "/") {
+        return
+      }
+
+      // Load the map
+      loadMap()
+
+      // A Hack to lazyload the script and execute the code.
+    }, { once: true })
+  </script>
+</body>
+
+</html>
