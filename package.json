@@ -2,17 +2,21 @@
   "name": "sunfox-solar",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "dependencies": {
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "14.0.4",
     "@ramonak/react-progress-bar": "^5.0.3",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^1.5.1",
     "framer-motion": "^10.16.4",
-    "react": "^18.2.0",
     "react-burger-menu": "^3.0.9",
     "react-collapsible": "^2.10.0",
-    "react-dom": "^18.2.0",
     "react-ga4": "^2.1.0",
     "react-google-autocomplete": "^2.7.3",
     "react-icons": "^4.11.0",
@@ -24,31 +28,10 @@
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.2",
-    "styled-components": "^6.1.0",
-    "web-vitals": "^2.1.4"
+    "styled-components": "^6.1.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4"
   }
 }
